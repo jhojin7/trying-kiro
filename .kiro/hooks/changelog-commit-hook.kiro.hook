@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Changelog & Commit Hook",
+  "description": "Automatically updates CHANGELOG.md with completed subtask details and creates a git commit with relevant files, asking for user confirmation before committing",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A subtask has been completed with file changes detected. Please:\n1. Update the CHANGELOG.md file following best practices from https://keepachangelog.com\n2. Include references to specific files and line numbers where applicable\n3. Prepare a git commit with only the relevant files that were changed\n4. Ask the user for confirmation before making the commit\n5. Focus on documenting what was accomplished in this subtask"
+  }
+}
