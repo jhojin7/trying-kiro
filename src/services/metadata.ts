@@ -1,4 +1,4 @@
-import { WebPageMetadata, VideoMetadata, SocialMetadata } from '@/types'
+import { WebPageMetadata, VideoMetadata, SocialMetadata } from '../types'
 
 export interface MetadataExtractor {
   extractWebPage(url: string): Promise<WebPageMetadata>
@@ -80,7 +80,7 @@ class MetadataExtractionService implements MetadataExtractor {
   private buildProxyUrl(url: string): string {
     // In production, this would use a CORS proxy service or server-side endpoint
     // For development, we'll use a placeholder that simulates the behavior
-    if (process.env.NODE_ENV === 'development') {
+    if (typeof window !== 'undefined') {
       return `/api/proxy?url=${encodeURIComponent(url)}`
     }
     return `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`

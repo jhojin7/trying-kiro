@@ -13,8 +13,8 @@ describe('App', () => {
     expect(screen.getByText('Save and organize content from anywhere')).toBeInTheDocument()
   })
 
-  it('shows ready for implementation message', () => {
+  it('shows save form', () => {
     render(<App />)
-    expect(screen.getByText('Ready for implementation...')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('Paste a URL, write a note, or share your thoughts...')).toBeInTheDocument()
   })
 })

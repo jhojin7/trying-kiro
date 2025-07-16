@@ -1,10 +1,9 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { metadataExtractor, MetadataExtractionService } from './metadata'
-import { ContentType } from '@/types'
 
 // Mock fetch globally
 const mockFetch = vi.fn()
-global.fetch = mockFetch
+vi.stubGlobal('fetch', mockFetch)
 
 describe('Metadata Extraction Integration Tests', () => {
   beforeEach(() => {

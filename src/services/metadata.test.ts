@@ -1,10 +1,9 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { MetadataExtractionService, metadataExtractor } from './metadata'
-import { WebPageMetadata, VideoMetadata, SocialMetadata } from '@/types'
 
 // Mock fetch globally
 const mockFetch = vi.fn()
-global.fetch = mockFetch
+vi.stubGlobal('fetch', mockFetch)
 
 describe('MetadataExtractionService', () => {
   let service: MetadataExtractionService

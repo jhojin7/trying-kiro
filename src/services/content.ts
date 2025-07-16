@@ -1,7 +1,7 @@
-import { ContentItem, ContentType, SaveRequest } from '@/types'
+import { ContentItem, ContentType, SaveRequest } from '../types'
 import { storageService } from './storage'
 import { metadataExtractor, MetadataExtractionService } from './metadata'
-import { isValidUrl } from '@/utils'
+import { isValidUrl } from '../utils'
 
 class ContentService {
   async saveContent(request: SaveRequest): Promise<ContentItem> {
