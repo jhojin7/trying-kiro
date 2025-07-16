@@ -21,9 +21,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive error handling for all database operations
 - Support for offline-first content storage and retrieval
 
+- Complete metadata extraction service implementation in `src/services/metadata.ts`
+  - Web page metadata extraction with Open Graph and Twitter Card support (lines 86-119)
+  - YouTube-specific metadata extraction including video duration and channel info (lines 121-140)
+  - Instagram metadata extraction with username and post type detection (lines 142-159)
+  - Robust error handling with configurable retry logic and exponential backoff (lines 390-410)
+  - CORS proxy integration for browser-based metadata fetching (lines 77-84)
+  - Support for multiple URL patterns and fallback extraction methods
+- MetadataExtractor interface defining extraction contracts (lines 3-7)
+- ExtractorOptions interface for configurable timeout and retry behavior (lines 9-13)
+- Utility methods for URL parsing, duration conversion, and view count parsing (lines 285-350)
+- Factory methods and type detection for different content sources (lines 415-441)
+
 ### Technical Details
 - Uses IndexedDB for reliable browser-based storage
 - Implements proper TypeScript typing with ContentItem and ContentFilter interfaces
 - Includes automatic database schema migration handling
 - Provides filtering capabilities for content type, tags, and search queries
 - Sorts content by creation date (newest first) for optimal user experience
+- Comprehensive metadata extraction with platform-specific parsers for YouTube and Instagram
+- Configurable retry mechanisms with exponential backoff for network resilience
+- DOM parsing for extracting structured metadata from HTML content
+- Support for multiple metadata formats (Open Graph, Twitter Cards, standard HTML tags)
