@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { ContentItem, SaveRequest } from './types'
 import { contentService } from './services/content'
 import { SaveForm } from './components/SaveForm'
 import { ContentList } from './components/ContentList'
+import { PWAInstallPrompt } from './components/PWAInstallPrompt'
+import { ShareTargetHandler } from './components/ShareTargetHandler'
 import './App.css'
 
 function App() {
@@ -58,8 +60,16 @@ function App() {
     }
   }
 
+  const handleContentShared = (content: ContentItem) => {
+    // Add shared content to the list
+    setItems(prev => [content, ...prev])
+  }
+
   return (
     <div className="app">
+      {/* Handle shared content from other apps */}
+      <ShareTargetHandler onContentShared={handleContentShared} />
+      
       <header className="app-header">
         <h1>Universal Pocket</h1>
         <p>Save and organize content from anywhere</p>
@@ -79,6 +89,9 @@ function App() {
           />
         </section>
       </main>
+
+      {/* PWA Installation Prompt */}
+      <PWAInstallPrompt />
     </div>
   )
 }
