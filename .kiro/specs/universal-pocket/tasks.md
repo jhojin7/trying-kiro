@@ -25,14 +25,14 @@
   - Write integration tests for metadata extraction from real URLs
   - _Requirements: 1.3, 1.4, 1.5_
 
-- [ ] 5. Build core web interface components
+- [x] 5. Build core web interface components
   - Create SaveForm component that accepts URLs, text, and handles different input types
   - Implement ContentList component with grid/list view and basic filtering by content type
   - Build ContentCard component showing previews, titles, and delete actions
   - Add responsive design for mobile and desktop with touch-friendly interactions
   - _Requirements: 2.1, 2.4, 3.1, 3.2, 3.3, 3.5_
 
-- [ ] 6. Implement Progressive Web App features
+- [x] 6. Implement Progressive Web App features
   - Create web app manifest with proper icons, theme colors, and display mode for installation
   - Configure share target in manifest to handle URLs, text, and files from Android share menu
   - Set up service worker with proper caching strategies and background sync registration
