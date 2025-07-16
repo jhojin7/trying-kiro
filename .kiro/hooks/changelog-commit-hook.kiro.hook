@@ -11,6 +11,6 @@
   },
   "then": {
     "type": "askAgent",
-    "prompt": "A subtask has been completed with file changes detected. Please:\n1. Update the CHANGELOG.md file following best practices from https://keepachangelog.com\n2. Include references to specific files and line numbers where applicable\n3. Prepare a git commit with only the relevant files that were changed\n4. Ask the user for confirmation before making the commit\n5. Focus on documenting what was accomplished in this subtask"
+    "prompt": "A subtask has been completed with file changes detected. Please:\n1. Update the CHANGELOG.md file following best practices from https://keepachangelog.com\n2. Include references to specific files and line numbers where applicable\n3. Review ALL modified and untracked files from git status to determine which files are part of this feature/change\n4. Include ALL relevant files in the git commit (implementation files, tests, documentation, etc.) - don't just commit a subset\n5. Exclude only project management files like .kiro/specs/ or other non-code changes that aren't part of the actual implementation\n6. Ask the user for confirmation before making the commit\n7. Focus on documenting what was accomplished in this subtask"
   }
 }
