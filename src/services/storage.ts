@@ -237,7 +237,6 @@ class StorageService {
       const transaction = this.db!.transaction([STORE_NAME], 'readwrite')
       const store = transaction.objectStore(STORE_NAME)
       const results: ContentItem[] = []
-      let completed = 0
 
       transaction.oncomplete = () => resolve(results)
       transaction.onerror = () => reject(transaction.error)
@@ -246,7 +245,6 @@ class StorageService {
         const request = store.add(item)
         request.onsuccess = () => {
           results[index] = item
-          completed++
         }
         request.onerror = () => reject(request.error)
       })
@@ -259,7 +257,6 @@ class StorageService {
     return new Promise((resolve, reject) => {
       const transaction = this.db!.transaction([STORE_NAME], 'readwrite')
       const store = transaction.objectStore(STORE_NAME)
-      let completed = 0
 
       transaction.oncomplete = () => resolve()
       transaction.onerror = () => reject(transaction.error)
@@ -267,7 +264,7 @@ class StorageService {
       ids.forEach(id => {
         const request = store.delete(id)
         request.onsuccess = () => {
-          completed++
+          // Delete completed successfully
         }
         request.onerror = () => reject(request.error)
       })
