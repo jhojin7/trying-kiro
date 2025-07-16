@@ -12,13 +12,13 @@
   - Write unit tests for storage operations including edge cases and quota management
   - _Requirements: 5.1, 5.4, 6.3_
 
-- [ ] 3. Build content processing and classification system
+- [x] 3. Build content processing and classification system
   - Implement URL pattern matching for YouTube, Instagram, Twitter, and common article sites
   - Create content type detection logic with fallback to generic link classification
   - Write unit tests for content classification accuracy across different URL types
   - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
 
-- [-] 4. Create metadata extraction service
+- [x] 4. Create metadata extraction service
   - Implement web scraping for Open Graph tags, title, description, and images
   - Add specialized extractors for YouTube (title, thumbnail, duration) and Instagram (post metadata)
   - Handle extraction failures gracefully with retry logic and placeholder content

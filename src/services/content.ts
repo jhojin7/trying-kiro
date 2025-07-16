@@ -1,5 +1,6 @@
 import { ContentItem, ContentType, SaveRequest } from '@/types'
 import { storageService } from './storage'
+import { metadataExtractor, MetadataExtractionService } from './metadata'
 import { isValidUrl } from '@/utils'
 
 class ContentService {
@@ -63,14 +64,64 @@ class ContentService {
     }
 
     if (request.url && isValidUrl(request.url)) {
-      // In a real implementation, this would fetch the URL and extract metadata
-      // For now, we'll return basic metadata
-      metadata.url = request.url
-      metadata.title = request.title || 'Web Page'
-      metadata.description = request.content || ''
+      try {
+        const extractorType = MetadataExtractionService.getExtractorType(request.url)
+        let extractedMetadata
+
+        switch (extractorType) {
+          case 'youtube':
+            extractedMetadata = await metadataExtractor.extractYouTube(request.url)
+            break
+          case 'instagram':
+            extractedMetadata = await metadataExtractor.extractInstagram(request.url)
+            break
+          default:
+            extractedMetadata = await metadataExtractor.extractWebPage(request.url)
+        }
+
+        // Merge extracted metadata with base metadata
+        Object.assign(metadata, extractedMetadata)
+      } catch (error) {
+        // Fallback to basic metadata if extraction fails
+        console.warn('Metadata extraction failed:', error)
+        metadata.url = request.url
+        metadata.title = request.title || this.extractTitleFromUrl(request.url)
+        metadata.description = request.content || ''
+        metadata.image = ''
+        metadata.siteName = this.extractSiteNameFromUrl(request.url)
+        metadata.extractionError = error instanceof Error ? error.message : 'Unknown error'
+      }
     }
 
     return metadata
+  }
+
+  private extractTitleFromUrl(url: string): string {
+    try {
+      const urlObj = new URL(url)
+      const pathname = urlObj.pathname
+      
+      // Remove file extension and clean up
+      const title = pathname
+        .split('/')
+        .pop()
+        ?.replace(/\.[^.]*$/, '')
+        ?.replace(/[-_]/g, ' ')
+        ?.replace(/\b\w/g, l => l.toUpperCase())
+      
+      return title || urlObj.hostname
+    } catch {
+      return 'Web Page'
+    }
+  }
+
+  private extractSiteNameFromUrl(url: string): string {
+    try {
+      const hostname = new URL(url).hostname
+      return hostname.replace(/^www\./, '')
+    } catch {
+      return 'Unknown Site'
+    }
   }
 
   private extractTags(request: SaveRequest): string[] {
