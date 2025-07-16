@@ -2,34 +2,88 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-header {
+  text-align: center;
   margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color, #333);
 }
 
 .app-header h1 {
-  margin: 0 0 1rem 0;
-  color: #646cff;
+  margin: 0 0 0.5rem 0;
+  color: var(--primary-color, #646cff);
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 
 .app-header p {
   margin: 0;
   opacity: 0.8;
+  color: var(--text-secondary, #ccc);
+  font-size: 1.1rem;
 }
 
 .app-main {
-  min-height: 400px;
+  flex: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.placeholder {
-  padding: 2rem;
-  border: 2px dashed #646cff;
-  border-radius: 8px;
-  opacity: 0.6;
-  font-style: italic;
+.app-save-section {
+  position: sticky;
+  top: 2rem;
+  z-index: 10;
+  background: var(--background-color, #242424);
+  padding: 1rem 0;
+  margin: -1rem 0 0 0;
+}
+
+.app-content-section {
+  flex: 1;
+}
+
+/* Mobile responsive design */
+@media (max-width: 768px) {
+  .app {
+    padding: 1rem;
+  }
+  
+  .app-header h1 {
+    font-size: 2rem;
+  }
+  
+  .app-header p {
+    font-size: 1rem;
+  }
+  
+  .app-main {
+    gap: 1.5rem;
+  }
+  
+  .app-save-section {
+    position: static;
+    top: auto;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+/* Light mode support */
+@media (prefers-color-scheme: light) {
+  .app {
+    --primary-color: #646cff;
+    --text-secondary: #666;
+    --border-color: #e5e5e5;
+    --background-color: #ffffff;
+  }
+  
+  .app-save-section {
+    background: var(--background-color, #ffffff);
+  }
 }

@@ -1,5 +1,5 @@
-import { ContentItem, ContentFilter } from '@/types'
-import { generateId } from '@/utils'
+import { ContentItem, ContentFilter } from '../types'
+import { generateId } from '../utils'
 
 // IndexedDB database configuration
 const DB_NAME = 'UniversalPocketDB'
