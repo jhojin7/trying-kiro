@@ -1,8 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { contentService } from './content'
 import { storageService } from './storage'
-import { metadataExtractor, MetadataExtractionService } from './metadata'
-import { ContentItem, SaveRequest } from '@/types'
 
 // Mock the storage service
 vi.mock('./storage', () => ({

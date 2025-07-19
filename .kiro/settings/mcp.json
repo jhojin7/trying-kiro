@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "zen": {
+      "command": "sh",
+      "args": [
+        "-c",
+        "exec $(which uvx || echo uvx) --from git+https://github.com/BeehiveInnovations/zen-mcp-server.git zen-mcp-server"
+      ],
+      "env": {
+        "PATH": "/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin:~/.local/bin",
+        "OPENAI_API_KEY": "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"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "docgen",
+        "thinkdeep"
+      ]
+    }
+  }
+}

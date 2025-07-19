@@ -4,9 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
+### Web App
 - `npm run dev` - Start development server (Vite) on http://localhost:5173
 - `npm run build` - Build for production (TypeScript compilation + Vite build)
 - `npm run preview` - Preview production build locally
+
+### API Server
+- `npm run server:dev` - Start API server for Raycast integration on http://localhost:3001
+- `npm run server:build` - Build API server for production
+- `npm run server:start` - Start production API server
+- `npm run dev:full` - Start both web app and API server together
+
+### Testing & Quality
 - `npm run test` - Run all tests with Vitest
 - `npm run test:watch` - Run tests in watch mode for development
 - `npm run lint` - Run ESLint for code quality checks
@@ -23,6 +32,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - `storage.ts` - Local storage abstraction (IndexedDB)
   - `metadata.ts` - URL metadata extraction for different platforms
   - `pwa.ts` - PWA-specific functionality and service worker management
+
+- **API Server**: Local HTTP server for external tool integration (`/server/`)
+  - `index.ts` - Express.js server with REST endpoints and WebSocket support
+  - `services/content-bridge.ts` - Server-compatible content management
+  - Runs on `localhost:3001` for Raycast and other external integrations
 
 - **Offline-First Design**: The app prioritizes offline functionality
   - Content can be saved without internet connection
@@ -78,3 +92,9 @@ The app is configured as a full PWA with:
 - The offline queue in ContentService requires careful handling during development
 - PWA features may not work fully in development mode - use `npm run preview` for testing PWA functionality
 - Content metadata extraction has fallback mechanisms for offline scenarios
+
+### API Server Development
+- Use `npm run dev:full` to run both web app and API server together
+- API server uses in-memory storage for development (separate from web app storage)
+- WebSocket connections provide real-time updates between server and potential clients
+- API endpoints are documented in `docs/api/server-api.md`

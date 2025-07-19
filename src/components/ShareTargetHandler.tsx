@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { pwaService } from '@/services/pwa';
 import { contentService } from '@/services/content';
+import { ContentItem } from '@/types';
 
 interface ShareTargetHandlerProps {
-  onContentShared?: (content: any) => void;
+  onContentShared?: (content: ContentItem) => void;
 }
 
 export const ShareTargetHandler: React.FC<ShareTargetHandlerProps> = ({
   onContentShared
 }) => {
   const [isProcessing, setIsProcessing] = useState(false);
-  const [sharedContent, setSharedContent] = useState<any>(null);
+  const [sharedContent, setSharedContent] = useState<{ url?: string; text?: string; title?: string } | null>(null);
 
   useEffect(() => {
     // Check for shared content on component mount
