@@ -1,12 +1,15 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { contentService } from './content'
 import { storageService } from './storage'
+import { metadataExtractor, MetadataExtractionService } from './metadata'
+import { ContentItem, SaveRequest } from '@/types'
 
 // Mock the storage service
 vi.mock('./storage', () => ({
   storageService: {
     saveContent: vi.fn(),
     getContent: vi.fn(),
+    getAllContent: vi.fn(),
     updateContent: vi.fn(),
     deleteContent: vi.fn()
   }
@@ -22,6 +25,12 @@ vi.mock('./metadata', () => ({
   MetadataExtractionService: {
     getExtractorType: vi.fn()
   }
+}))
+
+// Mock utils
+vi.mock('../utils', () => ({
+  isValidUrl: vi.fn((url: string) => /^https?:\/\//.test(url)),
+  generateId: vi.fn(() => 'mock-id-' + Date.now())
 }))
 
 describe('ContentService - Save Workflows', () => {

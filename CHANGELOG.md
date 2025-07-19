@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Comprehensive project documentation structure in `docs/` directory
+  - Documentation index and navigation in `docs/README.md` (lines 1-38)
+  - Organized documentation sections for overview, technical docs, development, and features
+  - Quick links for common development tasks and API references
+  - Structured documentation hierarchy for project setup, architecture, and PWA features
 - Comprehensive offline functionality and content save workflows in `src/services/content.ts`
   - Offline queue system for metadata extraction when network is unavailable (lines 12-25)
   - Automatic online/offline detection with event listeners (lines 17-25)
@@ -24,9 +29,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Detailed confirmation dialog showing item title and permanent deletion warning (lines 89-93)
   - Better user feedback for delete operations with item-specific messaging
 - Content save workflow test suite in `src/services/content-save-workflows.test.ts`
-  - Comprehensive testing for offline scenarios and error handling
-  - Integration tests for metadata extraction retry mechanisms
-  - Queue processing and sync status validation tests
+  - Comprehensive testing for offline save workflows with network unavailability simulation (lines 46-76)
+  - Offline queue management tests for metadata extraction queuing (lines 78-102)
+  - Fallback save workflow tests for metadata extraction failure scenarios (lines 104-128)
+  - Queue processing tests for online/offline state transitions (lines 130-168)
+  - Mock implementations for storage service, metadata extractor, and utility functions (lines 7-33)
+  - Integration tests validating sync status transitions and error handling
 - Complete Progressive Web App (PWA) implementation with native app-like experience
   - PWA manifest configuration in `public/manifest.json` with app metadata, icons, and share target support (lines 1-55)
   - Share target integration for receiving shared content from other apps via Web Share API (lines 24-39)
