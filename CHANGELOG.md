@@ -8,6 +8,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Comprehensive offline functionality and content save workflows in `src/services/content.ts`
+  - Offline queue system for metadata extraction when network is unavailable (lines 12-25)
+  - Automatic online/offline detection with event listeners (lines 17-25)
+  - Offline content saving with pending sync status and metadata extraction queuing (lines 57-85)
+  - Fallback content saving when metadata extraction fails (lines 87-105)
+  - Background processing of offline queue when connection is restored (lines 123-147)
+  - Retry mechanism for failed metadata extractions with exponential backoff (lines 149-188)
+  - Enhanced content type detection supporting files, videos, social media, and articles (lines 190-218)
+  - Comprehensive tag extraction based on URL patterns and content types (lines 310-334)
+  - Queue management utilities for monitoring and manual processing (lines 398-418)
+  - Bulk content deletion with success/failure tracking (lines 378-396)
+- Enhanced ContentCard component with improved user experience in `src/components/ContentCard.tsx`
+  - Context-aware delete confirmation messages based on content type (lines 81-87)
+  - Detailed confirmation dialog showing item title and permanent deletion warning (lines 89-93)
+  - Better user feedback for delete operations with item-specific messaging
+- Content save workflow test suite in `src/services/content-save-workflows.test.ts`
+  - Comprehensive testing for offline scenarios and error handling
+  - Integration tests for metadata extraction retry mechanisms
+  - Queue processing and sync status validation tests
 - Complete Progressive Web App (PWA) implementation with native app-like experience
   - PWA manifest configuration in `public/manifest.json` with app metadata, icons, and share target support (lines 1-55)
   - Share target integration for receiving shared content from other apps via Web Share API (lines 24-39)

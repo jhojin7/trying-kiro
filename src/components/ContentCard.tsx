@@ -88,7 +88,14 @@ export const ContentCard: React.FC<ContentCardProps> = ({
 
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation()
-    if (confirm('Are you sure you want to delete this item?')) {
+    
+    const itemType = item.type === 'note' ? 'note' : 
+                    item.type === 'video' ? 'video' : 
+                    item.type === 'article' ? 'article' : 'item'
+    
+    const confirmMessage = `Are you sure you want to delete this ${itemType}?\n\n"${item.title}"\n\nThis action cannot be undone.`
+    
+    if (confirm(confirmMessage)) {
       onDelete(item.id)
     }
   }
