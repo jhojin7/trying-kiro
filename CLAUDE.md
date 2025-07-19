@@ -98,3 +98,16 @@ The app is configured as a full PWA with:
 - API server uses in-memory storage for development (separate from web app storage)
 - WebSocket connections provide real-time updates between server and potential clients
 - API endpoints are documented in `docs/api/server-api.md`
+
+## Changelog
+
+### 2025-07-19 - Raycast Extension Implementation
+- ✅ Implemented complete Raycast extension with 3 commands:
+  - **Save Current URL**: Captures browser tabs from Chrome/Safari/Arc with optional selected text
+  - **Quick Note**: Form interface for saving notes with optional titles
+  - **Save Clipboard**: Saves clipboard text content to Universal Pocket
+- ✅ Fixed TypeScript configuration for proper JSX compilation
+- ✅ Integrated with Universal Pocket API server (localhost:3001)
+- ✅ Added comprehensive documentation and usage guide
+- ✅ Extension builds successfully and ready for production use
+- 📍 Location: `/raycast-extension/` directory with complete setup instructions
